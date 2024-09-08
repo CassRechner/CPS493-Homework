@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Example</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #DCFAE6;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin: auto;
+            border-left-style: solid;
+            border-left-width: thick;
+            text-align: left;
+            background-color: white;
+            padding: 15px;
+            margin: 25px auto;
+            width: 1180px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: left;
+            background-color: #279C40;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+        }
+
+        h2{
+            padding: 5px 10px;
+            margin: 0;
+            font-size: large;
+            display: block;
+        }
+        
+        .dropdown {
+            min-width: 100px;
+        }
+        .dropdown:hover, .dropdown:focus-within {
+            background-color: #27C440;
+            position: relative;
+        }
+        .stuff {
+            display: none;
+            position: absolute;
+            background-color: #27C440;
+            min-width: 100px;
+            flex-direction: column;
+        }
+        .dropdown:hover .stuff, .dropdown:focus-within .stuff  {
+            display: flex;
+        }
+        
+        a {
+            display: block;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+        a:hover {
+            background-color: #27FF40;
+        }
+
+        h3{
+            margin:0;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="dropdown">
+            <h2>File</h2>
+            <div class="stuff">
+                <a href="">New</a>
+                <a href="">Open</a>
+                <a href="">Save</a>
+                <a href="">Print</a>
+                <a href="">Close</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <input />
+            <h2 style="font-weight: normal;">Edit</h2>
+            <div class="stuff">
+                <a href="">Undo</a>
+                <a href="">Redo</a>
+                <a href="">Copy</a>
+                <a href="">Paste</a>
+                <a href="">Delete</a>
+                <a href="">Select All</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <h2>View</h2>
+            <div class="stuff">
+                <a href="">Zoom In</a>
+                <a href="">Zoom Out</a>
+                <a href="">Actual Size</a>
+                <a href="">Fit Page</a>
+                <a href="">Fit Width</a>
+                <a href="">Fit Height</a>
+                <a href="">Rotate Left</a>
+                <a href="">Rotate Right</a>
+                <a href="">Full Screen</a>
+            </div>
+        </div>
+    </header>
+    <main style="border-color: #27C440;">
+        <h3>Instructions</h3>
+        <p>Recreate this page using <b><i>only CSS</b></i>. Do yourself a favor and 1) Do not view the source. Figure it out yourself. 2) Do not search for the solution. Learn CSS until you know enough to do this.</p>
+    </main>
+    <main style="border-color: #F5F550;">
+        <h3>Extra Credit</h3>
+        <p>Notice how the Edit menu (besides for not being bold) reacts to clicks. If you click the edit menu, it remains open until you click somewhere else. (This you might need to search for)</p> <!--I am not doing that-->
+    </main>
+</body>
+</html>
