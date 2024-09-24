@@ -6,6 +6,35 @@
     <title>First Bulma Example</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/7f0d9d0e8f.js" crossorigin="anonymous"></script>
+    <style>
+        .bg-white { /*Not actually white*/
+            background-color: whitesmoke;
+            color: black;
+        }
+        .shelf {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+        .shelf li {
+          background-color: white;
+          padding: 1rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          width: 150px;
+          cursor: pointer;
+        } 
+        .shelf h3 {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+        .shelf .priority {
+          text-align: right;
+          font-size: 1rem;
+          color: #666;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
@@ -107,8 +136,81 @@
                           </footer>
                     </div>
                 </div>
+                
+            </div>
+<br>
+            <div class="section bg-white" id="app">
+                <div class="columns">
+                    <div class="column is-three-quarters">
+                        <!--{{ message }} <!--Debug line-->
+                        <ul class="shelf">
+                            <li v-for="task in tasks" @click="addToDone(task)">
+                                <h3>{{ task.name }}</h3>
+                                <p class="priority">{{ task.priority }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Priority</th>
+                                <th>Times Completed</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="item in done">
+                                <td>{{ item.task.name }}</td>
+                                <td>{{ item.task.priority }}</td>
+                                <td>{{ item.quantity }}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+        
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>
+            const { createApp, ref } = Vue
+
+            createApp({
+                setup() {
+                    const message = ref("Hello world")
+                    
+                    const tasks = ref([
+                        { name: 'Do 5 Jumping Jacks', priority: "High" },
+                        { name: "Defeat the Joker", priority: "Low" },
+                        { name: "Check Pull Requests", priority: "High" },
+                        { name: "Check Issues", priority: "Medium" },
+                        { name: "Draw a comic strip", priority: "Low" },
+                        { name: "Study for Biology", priority: "Medium" },
+                        { name: "Catch up to that initial bulma example (IMPORTANT)", priority: "Very Low" },
+                        { name: "Eat some croutons", priority: "Vital" },
+                        { name: "Take a nap", priority: "High" }
+                    ])
+
+                    const done = ref([])
+
+                    function addToDone(task) {
+                        const item = done.value.find(item => item.task.name === task.name)
+                        if(item) {
+                            item.quantity++
+                        } else {
+                            done.value.push({ task, quantity: 1 })
+                        }
+                    }
+
+                    return {
+                        message, tasks, done, addToDone
+                    }
+                }
+            }).mount('#app')
+        </script>
 </body>
 </html>
