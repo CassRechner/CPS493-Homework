@@ -9,7 +9,7 @@ import { exercises } from "../components/database"
                 <div class="columns">
                     <div class="column">
                         <ul class="shelf">
-                            <li v-for="exercise in exercises"> <!--Need to impliment it just being the logged in user-->
+                            <li v-for="exercise in exercises">
                                 <h3>{{ exercise.user }}</h3>
                                 <h2>{{ exercise.title }}</h2>
                                 <h4>{{ exercise.date }}</h4>

@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import NavBar from './components/NavBar.vue';
+
 </script>
 
 <template>
@@ -20,7 +21,6 @@ body {
 }
 
 .container {
-  background-color: white;
   box-shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   min-height: 100vh;
 }
