@@ -1,0 +1,30 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "user": "mario",
+        "title": "Did a light jog :)",
+        "date": "10/01/2024",
+        "distance": 7,
+        "duration": 80
+    },
+    {
+        "id": 2,
+        "user": "ihatemario",
+        "title": "Got some chips from the fridge",
+        "date": "10/23/2024",
+        "distance": 0.3,
+        "duration": 253465346347
+    },
+    {
+        "id": 3,
+        "user": "linguini",
+        "title": "Walked polterpup thru the park <3 🐶👻",
+        "date": "10/26/2024",
+        "distance": 2,
+        "duration": 45
+    }
+],
+    "total": 3,
+    "skip": 0
+}

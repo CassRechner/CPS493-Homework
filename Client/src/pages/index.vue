@@ -17,19 +17,19 @@
             <div class="columns is-multiline">
               <div class="column is-half"> <!--(div.column.is-half>h3.value+caption.caption)*4-->
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Distance</caption>
+                <div class="caption">Distance</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Duration</caption>
+                <div class="caption">Duration</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Avg Pace</caption>
+                <div class="caption">Avg Pace</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Calories</caption>
+                <div class="caption">Calories</div>
               </div>
             </div>
           </div>
@@ -41,19 +41,19 @@
             <div class="columns is-multiline">
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Distance</caption>
+                <div class="caption">Distance</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Duration</caption>
+                <div class="caption">Duration</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Avg Pace</caption>
+                <div class="caption">Avg Pace</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Calories</caption>
+                <div class="caption">Calories</div>
               </div>
             </div>
           </div>
@@ -65,19 +65,19 @@
             <div class="columns is-multiline">
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Distance</caption>
+                <div class="caption">Distance</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Duration</caption>
+                <div class="caption">Duration</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Avg Pace</caption>
+                <div class="caption">Avg Pace</div>
               </div>
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
-                <caption class="caption">Calories</caption>
+                <div class="caption">Calories</div>
               </div>
             </div>
           </div>

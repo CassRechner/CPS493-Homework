@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { users } from "../components/database"
+    import { ref } from "vue";
+    import { RouterLink } from 'vue-router'
+    import { getAll, type User } from '@/models/users';
+    const users = ref<User[]>([]);
+    users.value = getAll().data;
 </script>
 
 <template>
@@ -23,7 +27,7 @@ import { users } from "../components/database"
                                 <tr v-for="user in users">
                                     <td>{{ user.first }}</td>
                                     <td>{{ user.last }}</td>
-                                    <td>{{ user.emails }}</td>
+                                    <td>{{ user.email }}</td>
                                     <td>{{ user.handle }}</td>
                                     <td>{{ user.admin }}</td>
                                     <td>Buttons to be added</td>

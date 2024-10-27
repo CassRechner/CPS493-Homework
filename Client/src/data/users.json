@@ -1,0 +1,30 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "first": "Mario",
+        "last": "Mario",
+        "email": "mario@mario.mario",
+        "handle": "mario",
+        "admin": "true"
+    },
+    {
+        "id": 2,
+        "first": "Luigi",
+        "last": "Mario",
+        "email": "luigi@mario.mario",
+        "handle": "linguini",
+        "admin": "false"
+    },
+    {
+        "id": 3,
+        "first": "Metal Mario",
+        "last": "N/A",
+        "email": "thesuperiormario@yahoo.gov",
+        "handle": "ihatemario",
+        "admin": "false"
+    }
+],
+    "total": 3,
+    "skip": 0
+}

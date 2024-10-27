@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
+import { getAll, type User } from '@/models/users';
+import { login, session } from "@/models/session"
+const users = ref<User[]>([]);
+users.value = getAll().data;
+const isOpen = ref(false);
 
-const isOpen = ref(false)
 </script>
 
 <template>
@@ -57,12 +61,31 @@ const isOpen = ref(false)
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary">
+              <button class="button is-text">
                 <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
-                Log in
-              </a>
+              </button>
+              <div class="dropdown is-hoverable is-right">  
+                <div class="dropdown-trigger">
+                  <button class="button is-warning is-light" aria-haspopup="true" aria-controls="login-menu">
+                    <span>Log in</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="login-menu" role="menu">
+                  <ul class="dropdown-content">
+                    <li v-for="user in users" @click="login(user)">
+                      <a class="dropdown-item" :key="user.id"><p>{{ user.first }} {{ user.last }} @{{ user.handle }}</p></a>
+                    </li>
+                    <!-- Harcode
+                    <a class="dropdown-item" @click="profile = 'mario'">Mario</a>
+                    <a class="dropdown-item" @click="profile = 'linguini'">Luigi</a>
+                    <a class="dropdown-item" @click="profile = 'ihatemario'">Metal Mario</a>
+                    -->
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
