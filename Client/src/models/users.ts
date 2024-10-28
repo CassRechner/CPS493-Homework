@@ -14,5 +14,5 @@ export interface User {
   last: string
   email: string
   handle: string
-  admin: string
+  admin: boolean
 }

@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div>
-
+    <div class="notification is-info is-light">
+        Not required for this assignment 
     </div>
 </template>
 

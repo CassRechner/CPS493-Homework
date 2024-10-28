@@ -1,7 +1,8 @@
+import { ref } from 'vue'
 import data from '../data/exercises.json'
 import type { DataListEnvelope } from './dataEnvelope'
 
-export function getAll(): DataListEnvelope<Exercise> {
+export function getExercises(): DataListEnvelope<Exercise> {
   return {
     data: data.items,
     total: data.total
@@ -10,7 +11,7 @@ export function getAll(): DataListEnvelope<Exercise> {
 
 export interface Exercise {
   id: number
-  user: string
+  user: number
   title: string
   date: string
   distance: number

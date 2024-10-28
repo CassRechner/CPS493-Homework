@@ -5,8 +5,8 @@
         "first": "Mario",
         "last": "Mario",
         "email": "mario@mario.mario",
-        "handle": "mario",
-        "admin": "true"
+        "handle": "SuperMarioOfficial",
+        "admin": true
     },
     {
         "id": 2,
@@ -14,7 +14,7 @@
         "last": "Mario",
         "email": "luigi@mario.mario",
         "handle": "linguini",
-        "admin": "false"
+        "admin": false
     },
     {
         "id": 3,
@@ -22,7 +22,7 @@
         "last": "N/A",
         "email": "thesuperiormario@yahoo.gov",
         "handle": "ihatemario",
-        "admin": "false"
+        "admin": false
     }
 ],
     "total": 3,

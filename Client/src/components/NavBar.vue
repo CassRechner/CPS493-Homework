@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { getAll, type User } from '@/models/users';
-import { login, session } from "@/models/session"
+import { login, logout, session } from "@/models/session"
 const users = ref<User[]>([]);
 users.value = getAll().data;
 const isOpen = ref(false);
@@ -16,15 +16,15 @@ const isOpen = ref(false);
           <RouterLink to="/" class="navbar-item"><img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" height="30" /></RouterLink>
           <RouterLink to="/activity" class="navbar-item">
             <span class="icon">
-              <i class="fas fa-running"/>
+              <i class="fa-solid fa-person-hiking"></i>
             </span><span>My Activity</span></RouterLink>
           <RouterLink to="/statistics" class="navbar-item">
             <span class="icon">
-              <i class="fas fa-chart-line"/>
+              <i class="fa-solid fa-chart-simple"></i>
             </span><span>Statistics</span></RouterLink>  
           <RouterLink to="/feed" class="navbar-item">
             <span class="icon">
-              <i class="fas fa-people-group"/>
+              <i class="fa-solid fa-user-group"></i>
             </span><span>Feed</span></RouterLink>
         
 
@@ -41,7 +41,7 @@ const isOpen = ref(false);
         <div class="navbar-start">
           <RouterLink to="/search" class="navbar-item">
             <span class="icon">
-              <i class="fas fa-search"/>
+              <i class="fa-solid fa-magnifying-glass"></i>
             </span><span>Search</span></RouterLink>
 
 
@@ -78,6 +78,8 @@ const isOpen = ref(false);
                     <li v-for="user in users" @click="login(user)">
                       <a class="dropdown-item" :key="user.id"><p>{{ user.first }} {{ user.last }} @{{ user.handle }}</p></a>
                     </li>
+                    <hr class="dropdown-divider" />
+                    <li @click="logout"><a class="dropdown-item">Log Out</a></li>
                     <!-- Harcode
                     <a class="dropdown-item" @click="profile = 'mario'">Mario</a>
                     <a class="dropdown-item" @click="profile = 'linguini'">Luigi</a>

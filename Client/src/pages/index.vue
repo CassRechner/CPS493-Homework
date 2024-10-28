@@ -1,4 +1,22 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { getExercises, type Exercise } from '@/models/exercises';
+import { getAll, type User } from '@/models/users';
+import { session } from '@/models/session';
+const users = ref<User[]>([]);
+users.value = getAll().data;
+const exercises = ref<Exercise[]>([]);
+exercises.value = getExercises().data;
+const totalDistance = computed(() => {
+  return exercises.value.filter(({user}) => user===session.profile)
+  .reduce((dist, exercise) => dist + exercise.distance, 0
+  )
+})
+const totalTime = computed(() => {
+  return exercises.value.filter(({user}) => user===session.profile)
+  .reduce((time, exercise) => time + exercise.duration, 0
+  )
+})
 
 </script>
 
@@ -8,77 +26,22 @@
     <div class="container">
       <br>
       <div class="columns is-multiline">
-              <div class="column is-2">
-                
-              </div>
-        <div class="column is-4">
-          <div class="box has-text-success summary">
-            <h2 class="title">Today</h2>
-            <div class="columns is-multiline">
-              <div class="column is-half"> <!--(div.column.is-half>h3.value+caption.caption)*4-->
-                <h3 class="value">dummy</h3>
-                <div class="caption">Distance</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Duration</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Avg Pace</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Calories</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-          <div class="column is-4">
-          <div class="box has-text-success summary">
-            <h2 class="title">This Week</h2>
-            <div class="columns is-multiline">
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Distance</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Duration</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Avg Pace</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Calories</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
           <div class="column is-4 is-offset-4">
           <div class="box has-text-success summary">
-            <h2 class="title">All Time</h2>
+            <h2 class="title">All Time Stats</h2>
             <div class="columns is-multiline">
               <div class="column is-half">
-                <h3 class="value">dummy</h3>
+                <h3 class="value">{{ totalDistance }} miles</h3>
                 <div class="caption">Distance</div>
               </div>
               <div class="column is-half">
-                <h3 class="value">dummy</h3>
+                <h3 class="value">{{ totalTime }} minutes</h3>
                 <div class="caption">Duration</div>
-              </div>
+              </div><!--
               <div class="column is-half">
                 <h3 class="value">dummy</h3>
                 <div class="caption">Avg Pace</div>
-              </div>
-              <div class="column is-half">
-                <h3 class="value">dummy</h3>
-                <div class="caption">Calories</div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>

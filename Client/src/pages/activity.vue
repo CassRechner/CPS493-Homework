@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { getAll, type Exercise } from "@/models/exercises"
-import { computed, ref } from "vue";
+import { getExercises, type Exercise } from "@/models/exercises"
+import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
-exercises.value = getAll().data;
+exercises.value = getExercises().data;
 import MyPost from "@/components/MyPost.vue";
 import { session } from "@/models/session";
-import { type User } from '@/models/users';
+import AddPost from '@/components/AddPost.vue';
+const deletePost = (e: number) => {
+  exercises.value = exercises.value.filter((exercise) => exercise.id !== e)
+}
 </script>
 
 <template>
@@ -13,10 +16,16 @@ import { type User } from '@/models/users';
         <div class="section">
             <div class="container">
                 <div class="columns">
-                    <div class="column">
-                        <ul class="shelf">
-                            <MyPost v-for="exercise in exercises" :key="exercise.id" :exercise="exercise" />
-                        </ul>
+                    <div class="column is-4 is-offset-4">
+                        <a class="button is-info" v-if="session.profile" data-target="post-modal">
+                            <span class="icon">
+                                <i class="fa-solid fa-person-running"></i>
+                            </span><p>Add Workout</p>
+                        </a>
+                        <div class="notification is-info is-light" v-else>Log in to view your activity and make posts!</div>
+                        <div class="shelf">
+                            <MyPost @exerciseDeleted="deletePost" v-for="exercise in exercises" :key="exercise.id" :exercise="exercise" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,10 +34,13 @@ import { type User } from '@/models/users';
 </template>
 
 <style scoped>
-    shelf {
+    .shelf {
           display: flex;
           flex-direction: column;
           gap: 1rem;
         }
-
+    .button {
+        width: 400px;
+        margin: auto;
+    }
 </style>

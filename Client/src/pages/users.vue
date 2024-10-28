@@ -4,6 +4,10 @@
     import { getAll, type User } from '@/models/users';
     const users = ref<User[]>([]);
     users.value = getAll().data;
+    import { session } from "@/models/session";
+    const deleteUser = (u: number) => {
+        users.value = users.value.filter((user) => user.id !== u)
+    }
 </script>
 
 <template>
@@ -12,7 +16,7 @@
             <container>
                 <columns>
                     <column>
-                        <table class="table">
+                        <table class="table" v-if="session.access">
                             <thead>
                                 <tr>
                                     <th>First Name</th>
@@ -20,7 +24,7 @@
                                     <th>Emails</th>
                                     <th>Username</th>
                                     <th>Is Admin?</th>
-                                    <th>Admin Actions</th>
+                                    <th>Admin Panel</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,13 +34,17 @@
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.handle }}</td>
                                     <td>{{ user.admin }}</td>
-                                    <td>Buttons to be added</td>
+                                    <td>
+                                        <a class="button" ><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a class="button" @click="deleteUser(user.id)"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
 
                             </tfoot>
                         </table>
+                        <div class="notification is-info is-light" v-else>Admin access only</div>
                     </column>
                 </columns>
             </container>
