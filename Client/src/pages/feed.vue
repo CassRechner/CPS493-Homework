@@ -42,6 +42,6 @@ const deletePost = (e: number) => {
 }
 .button {
         width: 400px;
-        margin: auto;
+        margin: 1rem auto;
     }
 </style>
