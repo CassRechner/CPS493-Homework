@@ -1,5 +1,5 @@
-/** @type {{ items: Exercise[] }} */
-const data = require("../data/exercises.json")
+/** @type {{ items: Region[] }} */
+const data = require("../data/regions.json")
 
 /**
  * @template T
@@ -8,12 +8,12 @@ const data = require("../data/exercises.json")
  */
 
 /**
- * @typedef {import("../../Client/src/models/exercises").Exercise} Exercise
+ * @typedef {import("../../Client/src/models/regions").Region} Region
  */
 
 /**
- * Get all exercises
- * @returns {Promise<DataListEnvelope<Exercise>>}
+ * Get all regions
+ * @returns {Promise<DataListEnvelope<Region>>}
  */
 async function getAll() {
     return {
@@ -24,12 +24,12 @@ async function getAll() {
 }
 
 /**
- * Get a exercise by id
+ * Get a region by id
  * @param {number} id
- * @returns {Promise<DataEnvelope<Exercise>>}
+ * @returns {Promise<DataEnvelope<Region>>}
  */
 async function get(id) {
-    const item = data.items.find((exercise) => exercise.id == id)
+    const item = data.items.find((region) => region.id == id)
     return {
         isSuccess: !!item,
         data: item,
@@ -37,41 +37,41 @@ async function get(id) {
 }
 
 /**
- * Add a new exercise
- * @param {Exercise} exercise
- * @returns {Promise<DataEnvelope<Exercise>>}
+ * Add a new region
+ * @param {Region} region
+ * @returns {Promise<DataEnvelope<Region>>}
  */
-async function add(exercise) {
-    exercise.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
-    data.items.push(exercise)
+async function add(region) {
+    region.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
+    data.items.push(region)
     return {
         isSuccess: true,
-        data: exercise,
+        data: region,
     }
 }
 
 /**
- * Update a exercise
+ * Update a region
  * @param {number} id
- * @param {Exercise} exercise
- * @returns {Promise<DataEnvelope<Exercise>>}
+ * @param {Region} region
+ * @returns {Promise<DataEnvelope<Region>>}
  */
-async function update(id, exercise) {
-    const exerciseToUpdate = get(id)
-    Object.assign(exerciseToUpdate, exercise)
+async function update(id, region) {
+    const regionToUpdate = get(id)
+    Object.assign(regionToUpdate, region)
     return {
         isSuccess: true,
-        data: exerciseToUpdate,
+        data: regionToUpdate,
     }
 }
 
 /**
- * Remove a exercise
+ * Remove a region
  * @param {number} id
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-    const itemIndex = data.items.findIndex((exercise) => exercise.id == id)
+    const itemIndex = data.items.findIndex((region) => region.id == id)
     if (itemIndex === -1)
         throw {
             isSuccess: false,

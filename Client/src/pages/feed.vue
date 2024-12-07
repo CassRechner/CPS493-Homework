@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getExercises, type Exercise } from "@/models/exercises"
+import { getAll, type Exercise } from "@/models/exercises"
 import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
-exercises.value = getExercises().data;
+getAll().then((data) => exercises.value = data.data);
 import PostCard from "@/components/PostCard.vue";
 import { session } from "@/models/session";
 

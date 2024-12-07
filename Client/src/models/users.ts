@@ -1,25 +1,25 @@
 //import data from '../data/users.json'
-import { rest } from './myFetch'
+import { api } from './myFetch'
 import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
 
 export async function getAll() {
-  return api<DataListEnvelope<User>>('products')
+  return api<DataListEnvelope<User>>('users')
 }
 
 export async function getById(id: number) {
-  return api<DataEnvelope<User>>(`products/${id}`)
+  return api<DataEnvelope<User>>(`users/${id}`)
 }
 
 export function create(user: User) {
   return api<DataEnvelope<User>>('users', user)
 }
 
-export function update(product: User) {
-  return api<DataEnvelope<User>>(`products/${product.id}`, product, 'PATCH')
+export function update(user: User) {
+  return api<DataEnvelope<User>>(`users/${user.id}`, user, 'PATCH')
 }
 
 export function remove(id: number) {
-  return api<DataEnvelope<User>>(`products/${id}`, undefined, 'DELETE')
+  return api<DataEnvelope<User>>(`users/${id}`, undefined, 'DELETE')
 }
 /*
 export function getAll(): DataListEnvelope<User> {

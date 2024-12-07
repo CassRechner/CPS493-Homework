@@ -37,3 +37,6 @@ app.use((err, req, res, next) => {
     console.error(err)
     res.status(err.status ?? 500).send(err)
 })
+app.listen(PORT, (err, data) => {
+    console.log("Server is running at http://localhost:" + PORT)
+})

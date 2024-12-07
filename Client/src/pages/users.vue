@@ -4,9 +4,9 @@
     import { getAll, type User } from '@/models/users';
     import { getRegions, type Region } from "@/models/regions";
     const users = ref<User[]>([]);
-    users.value = getAll().data;
+    getAll().then((data) => users.value = data.data);
     const regions = ref<Region[]>([]);
-    regions.value = getRegions().data;
+    getRegions().then((data) => regions.value = data.data);
     import { session } from "@/models/session";
     const deleteUser = (u: number) => {
         users.value = users.value.filter((user) => user.id !== u)
