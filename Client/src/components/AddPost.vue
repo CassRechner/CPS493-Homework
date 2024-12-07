@@ -4,9 +4,9 @@ import { getExercises, type Exercise } from '@/models/exercises';
 import { getAll, type User } from '@/models/users';
 import { session } from '@/models/session';
 const users = ref<User[]>([]);
-users.value = getAll().data;
+getAll().then((data) => users.value = data.data);
 const exercises = ref<Exercise[]>([]);
-exercises.value = getExercises().data;
+getExercises().then((data) => exercises.value = data.data);
 </script>
 
 <template>

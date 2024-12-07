@@ -1,7 +1,7 @@
 import { api } from './myFetch'
 import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
 
-export async function getAll() {
+export async function getExercises() {
   return api<DataListEnvelope<Exercise>>('exercises')
 }
 

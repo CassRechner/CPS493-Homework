@@ -2,7 +2,7 @@
 import { getExercises, type Exercise } from "@/models/exercises"
 import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
-exercises.value = getExercises().data;
+getExercises().then((data) => exercises.value = data.data);
 import MyPost from "@/components/MyPost.vue";
 import { session } from "@/models/session";
 import AddPost from '@/components/AddPost.vue';

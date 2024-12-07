@@ -4,7 +4,7 @@ import { getAll, type User } from '@/models/users';
 import { session } from "@/models/session";
 import { ref } from 'vue';
 const users = ref<User[]>([]);
-users.value = getAll().data;
+getAll().then((data) => users.value = data.data);
 const props = defineProps<{
     exercise: Exercise
 }>()

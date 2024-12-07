@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import { getAll, type User } from '@/models/users';
 import { login, logout, session } from "@/models/session"
 const users = ref<User[]>([]);
-users.value = getAll().data;
+getAll().then((data) => users.value = data.data);
 const isOpen = ref(false);
 
 </script>
