@@ -5,7 +5,8 @@ import type { DataListEnvelope } from './dataEnvelope'
 export function getExercises(): DataListEnvelope<Exercise> {
   return {
     data: data.items,
-    total: data.total
+    total: data.total,
+    isSuccess: true,
   }
 }
 
@@ -16,4 +17,5 @@ export interface Exercise {
   date: string
   distance: number
   duration: number
+  region: number
 }

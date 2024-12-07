@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { Exercise } from '@/models/exercises';
 
+import { getRegions, type Region } from '@/models/regions';
 import { getAll, type User } from '@/models/users';
 import { session } from "@/models/session";
 import { ref } from 'vue';
 const users = ref<User[]>([]);
 users.value = getAll().data;
+const regions = ref<Region[]>([]);
+regions.value = getRegions().data;
 const props = defineProps<{
     exercise: Exercise
 }>()
@@ -27,6 +30,11 @@ const deleteExercise = (id: number) => {
         </div>
             <h2>{{ exercise.title }}</h2>
             <h4>{{ exercise.date }}</h4>
+            <div v-for="r in regions">
+                <div v-if="exercise.region==r.id">
+                    <h4>{{ r.name }}</h4>
+                </div>
+            </div>
             <p>{{ exercise.distance }} miles, {{ exercise.duration }} minutes</p>
     </div>
 </template>

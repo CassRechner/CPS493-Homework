@@ -2,8 +2,11 @@
     import { ref } from "vue";
     import { RouterLink } from 'vue-router'
     import { getAll, type User } from '@/models/users';
+    import { getRegions, type Region } from "@/models/regions";
     const users = ref<User[]>([]);
     users.value = getAll().data;
+    const regions = ref<Region[]>([]);
+    regions.value = getRegions().data;
     import { session } from "@/models/session";
     const deleteUser = (u: number) => {
         users.value = users.value.filter((user) => user.id !== u)
@@ -23,6 +26,7 @@
                                     <th>Last Name</th>
                                     <th>Emails</th>
                                     <th>Username</th>
+                                    <th>Region</th>
                                     <th>Is Admin?</th>
                                     <th>Admin Panel</th>
                                 </tr>
@@ -33,6 +37,13 @@
                                     <td>{{ user.last }}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.handle }}</td>
+                                    <td>
+                                        <div v-for="r in regions">
+                                            <div v-if="user.region==r.id">
+                                                {{ r.name }}
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>{{ user.admin }}</td>
                                     <td>
                                         <a class="button" ><i class="fa-solid fa-pen-to-square"></i></a>

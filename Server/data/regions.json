@@ -1,0 +1,22 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "name": "Mushroom Kingdom"
+    },
+    {
+        "id": 2,
+        "name": "Sarasaland"
+    },
+    {
+        "id": 3,
+        "name": "Bowser Badlands"
+    },
+    {
+        "id": 4,
+        "name": "Donkey Kong Island"
+    }
+],
+    "total": 4,
+    "skip": 0
+}
