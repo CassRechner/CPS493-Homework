@@ -5,7 +5,6 @@ const exercises = ref<Exercise[]>([]);
 getExercises().then((data) => exercises.value = data.data);
 import MyPost from "@/components/MyPost.vue";
 import { session } from "@/models/session";
-import AddPost from '@/components/AddPost.vue';
 const deletePost = (e: number) => {
   exercises.value = exercises.value.filter((exercise) => exercise.id !== e)
   remove(e);
