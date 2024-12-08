@@ -30,6 +30,6 @@ export function getRegions(): DataListEnvelope<Region> {
 }*/
 
 export interface Region {
-  id: number
+  id?: number
   name: string
 }

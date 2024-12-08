@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { ref } from "vue";
     import { RouterLink } from 'vue-router'
+    import AdminOnly from "@/components/AdminOnly.vue";
     import { getRegions, remove, type Region } from "@/models/regions";
     const regions = ref<Region[]>([]);
     getRegions().then((data) => regions.value = data.data);
@@ -31,7 +32,7 @@
                                     <td>{{ region.name }}</td>
                                     <td>
                                         <a class="button" ><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="button" @click="deleteRegion(region.id)"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a class="button" v-if="region.id" @click="deleteRegion(region.id)"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -39,9 +40,12 @@
 
                             </tfoot>
                         </table>
-                        <div class="notification is-info is-light" v-else>Admin access only</div>
+                        <AdminOnly v-else />
                     </column>
                 </columns>
+                <RouterLink to="/addregion" class="button is-success" v-if="session.access">
+                    <p>Add Region</p>
+                </RouterLink>
             </container>
         </div>
     </div>

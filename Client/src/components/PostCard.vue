@@ -21,7 +21,7 @@ const deleteExercise = (id: number) => {
 
 <template>
     <div class="post">
-        <button class="delete" v-if="exercise.user==session.profile||session.access" @click="deleteExercise(exercise.id)"></button>
+        <button class="delete" v-if="(exercise.user==session.profile||session.access)&&(exercise.id)"@click="deleteExercise(exercise.id)"></button>
 
         <div v-for="u in users">
             <div v-if="exercise.user==u.id">

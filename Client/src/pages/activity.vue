@@ -4,7 +4,7 @@ import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
 getExercises().then((data) => exercises.value = data.data);
 import MyPost from "@/components/MyPost.vue";
-import { session } from "@/models/session";
+import PostButton from "@/components/PostButton.vue";
 const deletePost = (e: number) => {
   exercises.value = exercises.value.filter((exercise) => exercise.id !== e)
   remove(e);
@@ -17,12 +17,7 @@ const deletePost = (e: number) => {
             <div class="container">
                 <div class="columns">
                     <div class="column is-4 is-offset-4">
-                        <a class="button is-info" v-if="session.profile" data-target="post-modal">
-                            <span class="icon">
-                                <i class="fa-solid fa-person-running"></i>
-                            </span><p>Add Workout</p>
-                        </a>
-                        <div class="notification is-info is-light" v-else>Log in to view your activity and make posts!</div>
+                        <PostButton />
                         <div class="shelf">
                             <MyPost @exerciseDeleted="deletePost" v-for="exercise in exercises" :key="exercise.id" :exercise="exercise" />
                         </div>

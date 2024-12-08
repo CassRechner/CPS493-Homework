@@ -3,7 +3,8 @@ import { reactive } from "vue"
 
 export const session = reactive({
     profile: 0,
-    access: false as boolean
+    access: false as boolean,
+    user: null,
 })
 
 export function login(user: User) {

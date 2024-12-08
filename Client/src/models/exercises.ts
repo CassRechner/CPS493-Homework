@@ -30,7 +30,7 @@ export function getExercises(): DataListEnvelope<Exercise> {
 }*/
 
 export interface Exercise {
-  id: number
+  id?: number
   user: number
   title: string
   date: string

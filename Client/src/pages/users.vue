@@ -3,6 +3,7 @@
     import { RouterLink } from 'vue-router'
     import { getAll, remove, type User } from '@/models/users';
     import { getRegions, type Region } from "@/models/regions";
+    import AdminOnly from "@/components/AdminOnly.vue";
     const users = ref<User[]>([]);
     getAll().then((data) => users.value = data.data);
     const regions = ref<Region[]>([]);
@@ -63,7 +64,7 @@
 
                             </tfoot>
                         </table>
-                        <div class="notification is-info is-light" v-else>Admin access only</div>
+                        <AdminOnly v-else />
                     </column>
                 </columns>
             </container>

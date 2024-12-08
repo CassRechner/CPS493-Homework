@@ -4,7 +4,6 @@ import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
 getExercises().then((data) => exercises.value = data.data);
 import PostCard from "@/components/PostCard.vue";
-import { session } from "@/models/session";
 import PostButton from "@/components/PostButton.vue";
 const deletePost = (e: number) => {
   exercises.value = exercises.value.filter((exercise) => exercise.id !== e)

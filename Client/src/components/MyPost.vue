@@ -25,7 +25,7 @@ The point of this is to have it only show the users posts-->
 <template>
 
     <div class="post" v-if="exercise.user==session.profile"> 
-        <a class="delete" @click="deleteExercise(exercise.id)"></a>
+        <a class="delete" v-if="exercise.id" @click="deleteExercise(exercise.id)"></a>
         <div v-for="u in users">
             <div v-if="exercise.user==u.id">
                 <p><strong>{{ u.first }} {{ u.last }}</strong> @{{ u.handle }}</p>

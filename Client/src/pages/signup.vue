@@ -22,12 +22,12 @@
       last: last.value,
       email: email.value,
       handle: handle.value,
-      //password: password.value,
+      //password: password.value, //commented out since passowrds are not implimented
       region: region.value,
       admin: false
     }
     add(userData)
-    router.push("/index")
+    router.push("/")
 
   }
 </script>
@@ -41,7 +41,7 @@
             class="input"
             type="text"
             v-model="first"
-            placeholder="Johnathaniel"
+            placeholder="e.g. Johnathaniel"
             required
           />
         </div>
@@ -54,7 +54,7 @@
             class="input"
             type="text"
             v-model="last"
-            placeholder="Carlson"
+            placeholder="e.g. Carlson"
             required
           />
         </div>
@@ -67,7 +67,7 @@
             class="input"
             type="email"
             v-model="email"
-            placeholder="Your email"
+            placeholder="e.g. mario@mario.mario"
             required
           />
         </div>
@@ -80,7 +80,7 @@
             class="input"
             type="text"
             v-model="handle"
-            placeholder="@thewoker"
+            placeholder="e.g. thewoker"
             required
           />
         </div>
@@ -101,7 +101,7 @@
             class="input"
             type="password"
             v-model="password"
-            placeholder="Your password"
+            placeholder="e.g. password123"
             required
           />
         </div>
