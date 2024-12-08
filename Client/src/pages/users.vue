@@ -53,7 +53,9 @@
                                     <td>{{ user.admin }}</td>
                                     <td>
                                         <a class="button" ><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="button" @click="deleteUser(user.id)"><i class="fa-solid fa-trash-can"></i></a>
+                                        <div v-if="user.id">
+                                            <a class="button" @click="deleteUser(user.id)"><i class="fa-solid fa-trash-can"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

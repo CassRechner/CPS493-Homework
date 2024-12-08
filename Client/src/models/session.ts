@@ -7,8 +7,12 @@ export const session = reactive({
 })
 
 export function login(user: User) {
-    session.profile = user.id;
     session.access = user.admin;
+    if (user.id){
+        session.profile = user.id;
+    } else {
+        logout
+    }
 }
 export function logout() {
     session.profile = 0;

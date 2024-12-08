@@ -69,7 +69,9 @@ const deleteUser = (u: number) => {
           <div class="navbar-item">
             <div class="buttons">
               <button class="button is-text">
-                <strong>Sign up</strong>
+                <RouterLink to="/signup">
+                  <strong>Sign up</strong>
+                </RouterLink>
               </button>
               <div class="dropdown is-hoverable is-right">  
                 <div class="dropdown-trigger">

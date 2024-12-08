@@ -10,7 +10,7 @@ export async function getById(id: number) {
   return api<DataEnvelope<User>>(`users/${id}`)
 }
 
-export function create(user: User) {
+export function add(user: User) {
   return api<DataEnvelope<User>>('users', user)
 }
 
@@ -32,7 +32,7 @@ export function getAll(): DataListEnvelope<User> {
 */
 
 export interface User {
-  id: number
+  id?: number
   first: string
   last: string
   email: string

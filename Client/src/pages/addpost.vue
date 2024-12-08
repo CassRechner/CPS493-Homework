@@ -33,7 +33,7 @@
         <div class="select">
             <select>
             <div v-for="region in regions">
-                <option value={{ region.id }}>{{ region.name }}</option>
+                <option value="{{ region.id }}">{{ region.name }}</option>
             </div v-for>
             </select>
         </div>
