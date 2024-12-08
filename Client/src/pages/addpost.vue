@@ -16,7 +16,7 @@
 
     const router = useRouter()
 
-    //Creates the account
+    //Creates the post
     function createPost() {
         const postData = {
             user: session.profile,

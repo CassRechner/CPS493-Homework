@@ -14,8 +14,8 @@ export function add(user: User) {
   return api<DataEnvelope<User>>('users', user)
 }
 
-export function update(user: User) {
-  return api<DataEnvelope<User>>(`users/${user.id}`, user, 'PATCH')
+export function update(id: number, user: User) {
+  return api<DataEnvelope<User>>(`users/${id}`, user, 'PATCH')
 }
 
 export function remove(id: number) {

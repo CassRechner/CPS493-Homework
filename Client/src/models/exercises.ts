@@ -13,8 +13,8 @@ export function create(exercise: Exercise) {
   return api<DataEnvelope<Exercise>>('exercises', exercise)
 }
 
-export function update(exercise: Exercise) {
-  return api<DataEnvelope<Exercise>>(`exercises/${exercise.id}`, exercise, 'PATCH')
+export function update(id: number, exercise: Exercise) {
+  return api<DataEnvelope<Exercise>>(`exercises/${id}`, exercise, 'PATCH')
 }
 
 export function remove(id: number) {

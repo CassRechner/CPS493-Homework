@@ -13,8 +13,8 @@ export function create(region: Region) {
   return api<DataEnvelope<Region>>('regions', region)
 }
 
-export function update(region: Region) {
-  return api<DataEnvelope<Region>>(`regions/${region.id}`, region, 'PATCH')
+export function update(id: number, region: Region) {
+  return api<DataEnvelope<Region>>(`regions/${id}`, region, 'PATCH')
 }
 
 export function remove(id: number) {

@@ -46,6 +46,9 @@
                 <RouterLink to="/addregion" class="button is-success" v-if="session.access">
                     <p>Add Region</p>
                 </RouterLink>
+                <RouterLink to="/editregion" class="button is-info" v-if="session.access">
+                    <p>Edit Region</p>
+                </RouterLink>
             </container>
         </div>
     </div>
