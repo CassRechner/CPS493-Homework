@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Exercise } from '@/models/exercises';
-
 import { getRegions, type Region } from '@/models/regions';
 import { getAll, type User } from '@/models/users';
 import { session } from "@/models/session";
@@ -23,18 +22,20 @@ const deleteExercise = (id: number) => {
 <template>
     <div class="post">
         <button class="delete" v-if="exercise.user==session.profile||session.access" @click="deleteExercise(exercise.id)"></button>
+
         <div v-for="u in users">
             <div v-if="exercise.user==u.id">
                 <p><strong>{{ u.first }} {{ u.last }}</strong> @{{ u.handle }}</p>
             </div>
         </div>
             <h2>{{ exercise.title }}</h2>
-            <h4>{{ exercise.date }}</h4>
-            <div v-for="r in regions">
-                <div v-if="exercise.region==r.id">
-                    <h4>{{ r.name }}</h4>
+            <h4>{{ exercise.date }}
+                <div v-for="r in regions">
+                    <div v-if="exercise.region==r.id">
+                        {{ r.name }}
+                    </div>
                 </div>
-            </div>
+            </h4>
             <p>{{ exercise.distance }} miles, {{ exercise.duration }} minutes</p>
     </div>
 </template>

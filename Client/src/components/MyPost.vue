@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { type Exercise } from '@/models/exercises';
+import { getRegions, type Region } from '@/models/regions';
 import { getAll, type User } from '@/models/users';
 import { session } from "@/models/session";
 import { ref } from 'vue';
 const users = ref<User[]>([]);
 getAll().then((data) => users.value = data.data);
+const regions = ref<Region[]>([]);
+getRegions().then((data) => regions.value = data.data);
 const props = defineProps<{
     exercise: Exercise
 }>()
@@ -16,6 +19,8 @@ const deleteExercise = (id: number) => {
 }
 
 </script>
+<!--This should be identical to PostCard, except for the v-if at the start (and removing any redudant v-ifs)
+The point of this is to have it only show the users posts-->
 
 <template>
 
@@ -27,7 +32,13 @@ const deleteExercise = (id: number) => {
             </div>
         </div>
         <h2>{{ exercise.title }}</h2>
-        <h4>{{ exercise.date }}</h4>
+            <h4>{{ exercise.date }}
+                <div v-for="r in regions">
+                    <div v-if="exercise.region==r.id">
+                        {{ r.name }}
+                    </div>
+                </div>
+            </h4>
         <p>{{ exercise.distance }} miles, {{ exercise.duration }} minutes</p>
     </div>
 </template>

@@ -1,15 +1,19 @@
 <script setup lang="ts">
     import { ref } from "vue";
     import { RouterLink } from 'vue-router'
-    import { getAll, type User } from '@/models/users';
+    import { getAll, remove, type User } from '@/models/users';
     import { getRegions, type Region } from "@/models/regions";
     const users = ref<User[]>([]);
     getAll().then((data) => users.value = data.data);
     const regions = ref<Region[]>([]);
     getRegions().then((data) => regions.value = data.data);
-    import { session } from "@/models/session";
+    import { logout, session } from "@/models/session";
     const deleteUser = (u: number) => {
-        users.value = users.value.filter((user) => user.id !== u)
+        users.value = users.value.filter((user) => user.id !== u);
+        remove(u)
+        if (u==session.profile){
+            logout
+        }
     }
 </script>
 
@@ -22,6 +26,7 @@
                         <table class="table" v-if="session.access">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Emails</th>
@@ -33,6 +38,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="user in users">
+                                    <td>{{ user.id }}</td>
                                     <td>{{ user.first }}</td>
                                     <td>{{ user.last }}</td>
                                     <td>{{ user.email }}</td>

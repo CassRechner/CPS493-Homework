@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getExercises, type Exercise } from "@/models/exercises"
+import { getExercises, remove, type Exercise } from "@/models/exercises"
 import { ref } from "vue";
 const exercises = ref<Exercise[]>([]);
 getExercises().then((data) => exercises.value = data.data);
@@ -8,6 +8,7 @@ import { session } from "@/models/session";
 
 const deletePost = (e: number) => {
   exercises.value = exercises.value.filter((exercise) => exercise.id !== e)
+  remove(e);
 }
 </script>
 
@@ -15,7 +16,6 @@ const deletePost = (e: number) => {
     <div>
         <div class="section">
             <div class="container">
-                
                 <div class="columns">
                     <div class="column is-4 is-offset-4">
                         <a class="button is-info" v-if="session.profile">

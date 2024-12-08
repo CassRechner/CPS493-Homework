@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import { getAll, type User } from '@/models/users';
+import { getAll, remove, type User } from '@/models/users';
 import { login, logout, session } from "@/models/session"
 const users = ref<User[]>([]);
 getAll().then((data) => users.value = data.data);
 const isOpen = ref(false);
-
+const deleteUser = (u: number) => {
+        users.value = users.value.filter((user) => user.id !== u);
+        logout; //not working idk why
+        remove(u);
+    }
 </script>
 
 <template>
@@ -18,7 +22,7 @@ const isOpen = ref(false);
             <span class="icon">
               <i class="fa-solid fa-person-hiking"></i>
             </span><span>My Activity</span></RouterLink>
-          <RouterLink to="/statistics" class="navbar-item">
+          <RouterLink to="/" class="navbar-item">
             <span class="icon">
               <i class="fa-solid fa-chart-simple"></i>
             </span><span>Statistics</span></RouterLink>  
@@ -54,6 +58,9 @@ const isOpen = ref(false);
               <RouterLink to="/users" class="navbar-item">
                 Users
               </RouterLink>
+              <RouterLink to="/regions" class="navbar-item">
+                Regions
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -78,13 +85,12 @@ const isOpen = ref(false);
                     <li v-for="user in users" @click="login(user)">
                       <a class="dropdown-item" :key="user.id"><p>{{ user.first }} {{ user.last }} @{{ user.handle }}</p></a>
                     </li>
-                    <hr class="dropdown-divider" />
-                    <li @click="logout"><a class="dropdown-item">Log Out</a></li>
-                    <!-- Harcode
-                    <a class="dropdown-item" @click="profile = 'mario'">Mario</a>
-                    <a class="dropdown-item" @click="profile = 'linguini'">Luigi</a>
-                    <a class="dropdown-item" @click="profile = 'ihatemario'">Metal Mario</a>
-                    -->
+                    <div v-if="session.profile!=0">
+                      <hr class="dropdown-divider" />
+                      <li @click="logout"><a class="dropdown-item">Log Out</a></li>
+                      <hr class="dropdown-divider" />
+                      <li @click="deleteUser(session.profile)"><a class="dropdown-item has-text-danger">Delete Account</a></li>
+                    </div v-if>
                   </ul>
                 </div>
               </div>

@@ -34,12 +34,12 @@
         "email": "potk@mushroomkingdom.gov",
         "handle": "POTK",
         "region": 1,
-        "admin": false
+        "admin": true
     },
     {
         "id": 5,
         "first": "Daisy",
-        "last": "from the hit game Super Mario Land for the Gameboy",
+        "last": "from the hit game Super Mario Land for the Nintendo Gameboy",
         "email": "daisy@sarasaland.gov.sl",
         "handle": "GameBoyGirl",
         "region": 2,
@@ -79,7 +79,7 @@
         "email": "funkysflyers@banana.kong",
         "handle": "FunkysFlyersOfficial",
         "region": 4,
-        "admin": false
+        "admin": true
     }
 ],
     "total": 9,
