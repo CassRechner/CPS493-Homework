@@ -1,0 +1,51 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "user": 1,
+        "title": "Did a light jog :)",
+        "date": "10/01/2024",
+        "distance": 7,
+        "duration": 80,
+        "region": 1
+    },
+    {
+        "id": 2,
+        "user": 3,
+        "title": "Got some chips from the fridge",
+        "date": "10/08/2024",
+        "distance": 0.3,
+        "duration": 253465346347,
+        "region": 3
+    },
+    {
+        "id": 3,
+        "user": 2,
+        "title": "Walked polterpup thru the park <3 🐶👻",
+        "date": "10/12/2024",
+        "distance": 2,
+        "duration": 45,
+        "region": 2
+    },
+    {
+        "id": 4,
+        "user": 1,
+        "title": "Did some more jogging, with my bro this time :)",
+        "date": "10/16/2024",
+        "distance": 10,
+        "duration": 120,
+        "region": 4
+    },
+    {
+        "id": 5,
+        "user": 2,
+        "title": "Went running with my bro 😊",
+        "date": "10/16/2024",
+        "distance": 8,
+        "duration": 120,
+        "region": 4
+    }
+
+],
+    "total": 5
+}

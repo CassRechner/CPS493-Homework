@@ -1,0 +1,87 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "first": "Mario",
+        "last": "Mario",
+        "email": "mario@mario.mario",
+        "handle": "SuperMarioOfficial",
+        "region": 1,
+        "admin": true
+    },
+    {
+        "id": 2,
+        "first": "Luigi",
+        "last": "Mario",
+        "email": "luigi@mario.mario",
+        "handle": "linguini",
+        "region": 1,
+        "admin": false
+    },
+    {
+        "id": 3,
+        "first": "Metal Mario",
+        "last": "N/A",
+        "email": "thesuperiormario@yahoo.gov",
+        "handle": "ihatemario",
+        "region": 1,
+        "admin": false
+    },
+    {
+        "id": 4,
+        "first": "Peach",
+        "last": "Toadstool",
+        "email": "potk@mushroomkingdom.gov",
+        "handle": "POTK",
+        "region": 1,
+        "admin": true
+    },
+    {
+        "id": 5,
+        "first": "Daisy",
+        "last": "from the hit game Super Mario Land for the Nintendo Gameboy",
+        "email": "daisy@sarasaland.gov.sl",
+        "handle": "GameBoyGirl",
+        "region": 2,
+        "admin": false
+    },
+    {
+        "id": 6,
+        "first": "Bowser",
+        "last": "N/A",
+        "email": "bowser@bowser.gov.bk",
+        "handle": "ihatemario1",
+        "region": 3,
+        "admin": false
+    },
+    {
+        "id": 7,
+        "first": "Kamek",
+        "last": "N/A",
+        "email": "kamek@bowser.gov.bk",
+        "handle": "Kamek1230",
+        "region": 3,
+        "admin": false
+    },
+    {
+        "id": 8,
+        "first": "Donkey",
+        "last": "Kong",
+        "email": "donkey@banana.kong",
+        "handle": "donkeykonb",
+        "region": 4,
+        "admin": false
+    },
+    {
+        "id": 9,
+        "first": "Funky",
+        "last": "Kong",
+        "email": "funkysflyers@banana.kong",
+        "handle": "FunkysFlyersOfficial",
+        "region": 4,
+        "admin": true
+    }
+],
+    "total": 9,
+    "skip": 0
+}
