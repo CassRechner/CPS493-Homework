@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import { ref } from 'vue';
 import App from './App.vue'
 import router from './router'
+import supabase from './config/supaBaseClient';
 
 const app = createApp(App)
 

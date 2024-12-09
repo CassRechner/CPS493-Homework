@@ -1,5 +1,7 @@
 /** @type {{ items: Region[] }} */
 const data = require("../data/regions.json")
+const { getConnection } = require("./supabase")
+const conn = getConnection()
 
 /**
  * @template T
@@ -16,10 +18,14 @@ const data = require("../data/regions.json")
  * @returns {Promise<DataListEnvelope<Region>>}
  */
 async function getAll() {
+    const { data, error, count } = await conn
+    .from("regions")
+    .select("*", { count: "estimated" })
     return {
-        isSuccess: true,
-        data: data.items,
-        total: data.items.length,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+        total: count,
     }
 }
 
@@ -29,24 +35,42 @@ async function getAll() {
  * @returns {Promise<DataEnvelope<Region>>}
  */
 async function get(id) {
-    const item = data.items.find((region) => region.id == id)
-    return {
-        isSuccess: !!item,
-        data: item,
+    const { data, error } = await conn
+        .from("regions")
+        .select("*")
+        .eq("id", id)
+        .single()
+        return {
+            isSuccess: !error,
+            message: error?.message,
+            data: data,
     }
 }
-
+async function seed() {
+    for (const region of data.items) {
+        await add(region)
+    }
+}
 /**
  * Add a new region
  * @param {Region} region
  * @returns {Promise<DataEnvelope<Region>>}
  */
 async function add(region) {
-    region.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
-    data.items.push(region)
+    const { data, error } = await conn
+        .from("regions")
+        .insert([
+            {
+                id: region.id,
+                name: region.name,
+            },
+        ])
+        .select("*")
+        .single()
     return {
-        isSuccess: true,
-        data: region,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
     }
 }
 
@@ -57,11 +81,21 @@ async function add(region) {
  * @returns {Promise<DataEnvelope<Region>>}
  */
 async function update(id, region) {
-    const regionToUpdate = get(id)
-    Object.assign(regionToUpdate, region)
+    const { data, error } = await conn
+        .from("regions")
+        .update([
+            {
+                id: region.id,
+                name: region.name,
+            },
+        ])
+        .eq("id", id)
+        .select("*")
+        .single()
     return {
-        isSuccess: true,
-        data: regionToUpdate,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
     }
 }
 
@@ -71,16 +105,17 @@ async function update(id, region) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-    const itemIndex = data.items.findIndex((region) => region.id == id)
-    if (itemIndex === -1)
-        throw {
-            isSuccess: false,
-            message: "Item not found",
-            data: id,
-            status: 404,
-        }
-    data.items.splice(itemIndex, 1)
-    return { isSuccess: true, message: "Item deleted", data: id }
+    const { data, error } = await conn
+        .from("regions")
+        .delete()
+        .eq("id", id)
+        .select("*")
+        .single()
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+    }
 }
 
 module.exports = {

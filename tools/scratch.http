@@ -27,5 +27,6 @@ Content-Type: application/json
     "email": "goldberg@newpaltz.edu",
     "handle": "wariowareofficial2",
     "region": 1,
-    "admin": false
+    "admin": false,
+    "id": 37
 }

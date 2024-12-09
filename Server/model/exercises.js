@@ -1,5 +1,7 @@
 /** @type {{ items: Exercise[] }} */
 const data = require("../data/exercises.json")
+const { getConnection } = require("./supabase")
+const conn = getConnection()
 
 /**
  * @template T
@@ -16,10 +18,14 @@ const data = require("../data/exercises.json")
  * @returns {Promise<DataListEnvelope<Exercise>>}
  */
 async function getAll() {
+    const { data, error, count } = await conn
+    .from("Exercises")
+    .select("*", { count: "estimated" })
     return {
-        isSuccess: true,
-        data: data.items,
-        total: data.items.length,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+        total: count,
     }
 }
 
@@ -29,10 +35,21 @@ async function getAll() {
  * @returns {Promise<DataEnvelope<Exercise>>}
  */
 async function get(id) {
-    const item = data.items.find((exercise) => exercise.id == id)
+const { data, error } = await conn
+    .from("Exercises")
+    .select("*")
+    .eq("id", id)
+    .single()
     return {
-        isSuccess: !!item,
-        data: item,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+    }
+}
+
+async function seed() {
+    for (const exercise of data.items) {
+        await add(exercise)
     }
 }
 
@@ -42,11 +59,24 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<Exercise>>}
  */
 async function add(exercise) {
-    exercise.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
-    data.items.push(exercise)
+    const { data, error } = await conn
+        .from("Exercises")
+        .insert([
+            {
+                id: exercise.id,
+                user: exercise.user,
+                title: exercise.title,
+                date: exercise.date,
+                duration: exercise.duration,
+                region: exercise.region,
+            },
+        ])
+        .select("*")
+        .single()
     return {
-        isSuccess: true,
-        data: exercise,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
     }
 }
 
@@ -57,11 +87,24 @@ async function add(exercise) {
  * @returns {Promise<DataEnvelope<Exercise>>}
  */
 async function update(id, exercise) {
-    const exerciseToUpdate = get(id)
-    Object.assign(exerciseToUpdate, exercise)
+    const { data, error } = await conn
+        .from("Exercises")
+        .update([
+            {
+                id: exercise.id,
+                user: exercise.user,
+                title: exercise.title,
+                date: exercise.date,
+                duration: exercise.duration,
+                region: exercise.region,
+            },
+        ])
+        .select("*")
+        .single()
     return {
-        isSuccess: true,
-        data: exerciseToUpdate,
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
     }
 }
 
@@ -71,16 +114,17 @@ async function update(id, exercise) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-    const itemIndex = data.items.findIndex((exercise) => exercise.id == id)
-    if (itemIndex === -1)
-        throw {
-            isSuccess: false,
-            message: "Item not found",
-            data: id,
-            status: 404,
-        }
-    data.items.splice(itemIndex, 1)
-    return { isSuccess: true, message: "Item deleted", data: id }
+    const { data, error } = await conn
+        .from("Exercises")
+        .delete()
+        .eq("id", id)
+        .select("*")
+        .single()
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+    }
 }
 
 module.exports = {
