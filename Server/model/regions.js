@@ -83,12 +83,10 @@ async function add(region) {
 async function update(id, region) {
     const { data, error } = await conn
         .from("regions")
-        .update([
-            {
+        .update({
                 id: region.id,
                 name: region.name,
-            },
-        ])
+        })
         .eq("id", id)
         .select("*")
         .single()

@@ -88,7 +88,7 @@ async function add(user) {
 async function update(id, user) {
     const { data, error } = await conn
         .from("Users")
-        .update([
+        .update(
             {
                 id: user.id,
                 first: user.first,
@@ -97,8 +97,8 @@ async function update(id, user) {
                 handle: user.handle,
                 region: user.region,
                 admin: user.admin,
-            },
-        ])
+            }
+        )
         .select("*")
         .single()
     return {

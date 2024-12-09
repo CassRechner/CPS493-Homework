@@ -61,16 +61,17 @@ async function seed() {
 async function add(exercise) {
     const { data, error } = await conn
         .from("Exercises")
-        .insert([
+        .insert(
             {
                 id: exercise.id,
                 user: exercise.user,
                 title: exercise.title,
                 date: exercise.date,
                 duration: exercise.duration,
+                distance: exercise.distance,
                 region: exercise.region,
-            },
-        ])
+            }
+        )
         .select("*")
         .single()
     return {
@@ -89,16 +90,17 @@ async function add(exercise) {
 async function update(id, exercise) {
     const { data, error } = await conn
         .from("Exercises")
-        .update([
+        .update(
             {
                 id: exercise.id,
                 user: exercise.user,
                 title: exercise.title,
                 date: exercise.date,
                 duration: exercise.duration,
+                distance: exercise.distance,
                 region: exercise.region,
-            },
-        ])
+            }
+        )
         .select("*")
         .single()
     return {
