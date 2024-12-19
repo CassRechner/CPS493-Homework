@@ -127,6 +127,19 @@ async function remove(id) {
     }
 }
 
+async function search(query) {
+    const { data, error, count } = await conn
+        .from("Users")
+        .select("*", { count: "estimated" })
+        .or(`handle.like.%${query},first.like.%${query},last.like.%${query},region.like%${query}`)
+    return {
+        isSuccess: !error,
+        message: error?.message,
+        data: data,
+        total: count,
+    }
+}
+
 module.exports = {
     getAll,
     get,

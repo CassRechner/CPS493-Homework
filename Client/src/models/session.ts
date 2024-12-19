@@ -12,7 +12,7 @@ export function login(user: User) {
     if (user.id){
         session.profile = user.id;
     } else {
-        logout()
+        logout
     }
 }
 export function logout() {
